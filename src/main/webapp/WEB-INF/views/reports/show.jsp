@@ -6,6 +6,7 @@
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="commLik" value="${ForwardConst.CMD_LIKES.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -51,7 +52,7 @@
         </c:if>
         <c:if test="${sessionScope.login_employee.id != report.employee.id}">
             <p>
-                <a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報にいいねする</a>
+                <a href="<c:url value='?action=${actRep}&command=${commLik}&id=${report.id}' />">この日報にいいねする</a>
             </p>
         </c:if>
 
