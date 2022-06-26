@@ -7,12 +7,15 @@ import java.util.List;
 import javax.servlet.ServletException;
 
 import actions.views.EmployeeView;
+import actions.views.LikeView;
 import actions.views.ReportView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
+import services.LikeService;
 import services.ReportService;
+
 
 /**
  * 日報に関する処理を行うActionクラス
@@ -21,6 +24,7 @@ import services.ReportService;
 public class ReportAction extends ActionBase {
 
     private ReportService service;
+    private LikeService service2;
 
     /**
      * メソッドを実行する
@@ -250,6 +254,18 @@ public class ReportAction extends ActionBase {
 
             //日報データを更新する
             service.update(rv);
+
+            //セッションからログイン中の従業員情報を取得
+            EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+
+            //パラメータの値をもとにいいね一覧情報のインスタンスを作成する
+            LikeView lv = new LikeView(
+                    null,
+                    rv, //日報データを登録
+                    ev, //ログインしている従業員を、いいねした人として登録する
+                    null,
+                    null);
+            service2.create(lv);
 
             //セッションに更新完了のフラッシュメッセージを設定
             putSessionScope(AttributeConst.FLUSH, MessageConst.I_LIKES.getMessage());
