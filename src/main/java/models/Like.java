@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -20,7 +22,15 @@ import lombok.Setter;
  * いいねデータのDTOモデル
  *
  */
-@Table(name = "Like")
+@Table(name = "like_list")
+@NamedQueries({
+    @NamedQuery(
+            name = "like.getAll",
+            query = "SELECT r FROM Report AS r WHERE r.employee = :employee ORDER BY r.id DESC"),
+    @NamedQuery(
+            name = "like.count",
+            query = "SELECT COUNT(r) FROM Like AS r")
+})
 
 @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)
 @Setter //全てのクラスフィールドについてsetterを自動生成する(Lombok)
@@ -39,6 +49,7 @@ public class Like {
     /**
      * いいねした日報
      */
+    @ManyToOne
     @JoinColumn(name = "report", nullable = false)
     private Report report;
 
