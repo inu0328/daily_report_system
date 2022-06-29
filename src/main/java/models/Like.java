@@ -13,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import constants.JpaConst;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,8 +26,8 @@ import lombok.Setter;
 @Table(name = "like_list")
 @NamedQueries({
     @NamedQuery(
-            name = "like.getAll",
-            query = "SELECT r FROM Report AS r WHERE r.employee = :employee ORDER BY r.id DESC"),
+            name = JpaConst.Q_REP_GET_ALL_LIKE,
+            query = JpaConst.Q_REP_GET_ALL_LIKE_DEF),
     @NamedQuery(
             name = "like.count",
             query = "SELECT COUNT(r) FROM Like AS r")

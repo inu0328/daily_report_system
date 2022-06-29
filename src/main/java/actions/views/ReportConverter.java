@@ -11,6 +11,7 @@ import models.Report;
  */
 public class ReportConverter {
 
+    
     /**
      * ViewモデルのインスタンスからDTOモデルのインスタンスを作成する
      * @param rv ReportViewのインスタンス
