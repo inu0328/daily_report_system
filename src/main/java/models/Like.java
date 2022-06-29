@@ -29,8 +29,8 @@ import lombok.Setter;
             name = JpaConst.Q_REP_GET_ALL_LIKE,
             query = JpaConst.Q_REP_GET_ALL_LIKE_DEF),
     @NamedQuery(
-            name = "like.count",
-            query = "SELECT COUNT(r) FROM Like AS r")
+            name = JpaConst.Q_REP_COUNT_ALL_LIKE,
+            query = JpaConst.Q_REP_COUNT_ALL_LIKE_DEF)
 })
 
 @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)

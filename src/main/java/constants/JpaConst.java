@@ -81,4 +81,6 @@ public interface JpaConst {
     String Q_REP_GET_ALL_LIKE = ENTITY_LIKE + ".getAllMine";
     String Q_REP_GET_ALL_LIKE_DEF = "SELECT l FROM Like AS l WHERE l.report = :" + JPQL_PARM_REPORT + " ORDER BY l.id DESC";
 
+    String Q_REP_COUNT_ALL_LIKE = ENTITY_LIKE + ".countAllLike";
+    String Q_REP_COUNT_ALL_LIKE_DEF = "SELECT COUNT(l) FROM Like AS l WHERE l.report = :" + JPQL_PARM_REPORT;
 }

@@ -301,8 +301,8 @@ public class ReportAction extends ActionBase {
 
         List<LikeView> likes = LikeService.getLikePerPage(selectReport, page);
 
-        //全日報データの件数を取得
-        long likesCount = LikeService.countAll();
+        //指定日報のいいねデータの件数を取得
+        long likesCount = LikeService.countAll(selectReport);
 
         putRequestScope(AttributeConst.LIKES, likes); //取得した日報データ
         putRequestScope(AttributeConst.LIK_COUNT, likesCount); //全ての日報データの件数

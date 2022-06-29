@@ -40,11 +40,12 @@ public class LikeService extends ServiceBase {
     }
 
     /**
-     * 日報テーブルのデータの件数を取得し、返却する
-     * @return データの件数
+     * 指定した日報のいいねデータ件数を取得し、返却する
+     * @return いいねデータ件数
      */
-    public long countAll() {
-        long likes_count = (long) em.createNamedQuery("like.count", Long.class)
+    public long countAll(ReportView report) {
+        long likes_count = (long) em.createNamedQuery(JpaConst.Q_REP_COUNT_ALL_LIKE, Long.class)
+                .setParameter(JpaConst.JPQL_PARM_REPORT, ReportConverter.toModel(report))
                 .getSingleResult();
         return likes_count;
     }
@@ -56,7 +57,7 @@ public class LikeService extends ServiceBase {
         em.getTransaction().commit();
 
     }
-    
+
     /**
      * 指定した従業員が作成した日報データを、指定されたページ数の一覧画面に表示する分取得しReportViewのリストで返却する
      * @param employee 従業員
@@ -72,6 +73,6 @@ public class LikeService extends ServiceBase {
                 .getResultList();
         return LikeConverter.toViewList(Likes);
     }
-    
+
 }
 
