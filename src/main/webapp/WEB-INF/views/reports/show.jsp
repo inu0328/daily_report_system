@@ -51,12 +51,12 @@
             </p>
         </c:if>
         <c:if test="${sessionScope.login_employee.id != report.employee.id}">
-                <c:if test="${sessionScope.login_employee.id == requestScope.likes.employee.id}">
-                </c:if>
-                <c:if test="${sessionScope.login_employee.id != requestScope.likes.employee.id}">
+                <c:if test="${0 == requestScope.likes_count}">
                 <p>
                 <a href="<c:url value='?action=${actRep}&command=${commLik}&id=${report.id}' />">この日報にいいねする</a>
                 </p>
+                </c:if>
+                <c:if test="${1 <= requestScope.likes_count}">
                 </c:if>
         </c:if>
 

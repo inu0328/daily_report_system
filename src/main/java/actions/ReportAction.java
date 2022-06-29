@@ -66,6 +66,7 @@ public class ReportAction extends ActionBase {
         if (flush != null) {
             putRequestScope(AttributeConst.FLUSH, flush);
             removeSessionScope(AttributeConst.FLUSH);
+            
         }
 
         //一覧画面を表示
@@ -172,8 +173,8 @@ public class ReportAction extends ActionBase {
         } else {
 
             putRequestScope(AttributeConst.REPORT, rv); //取得した日報データ
-            putRequestScope(AttributeConst.LIK_COUNT, searchLikes); //取得した日報データ
-            System.out.print("取得日報データセット完了" + searchLikes);
+            putRequestScope(AttributeConst.LIK_COUNT, searchLikes); //取得したいいねした人データ
+            System.out.print("取得日報データセット完了➝" + searchLikes);
 
             //詳細画面を表示
             forward(ForwardConst.FW_REP_SHOW);
