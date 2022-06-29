@@ -77,10 +77,13 @@ public interface JpaConst {
     //指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
-
+    //指定した日報データにいいねした人のデータを、指定されたページ数の一覧画面に表示する分取得しLikeViewのリストで返却する
     String Q_REP_GET_ALL_LIKE = ENTITY_LIKE + ".getAllMine";
     String Q_REP_GET_ALL_LIKE_DEF = "SELECT l FROM Like AS l WHERE l.report = :" + JPQL_PARM_REPORT + " ORDER BY l.id DESC";
-
+    //指定した日報のいいねデータ件数を取得し、返却する
     String Q_REP_COUNT_ALL_LIKE = ENTITY_LIKE + ".countAllLike";
     String Q_REP_COUNT_ALL_LIKE_DEF = "SELECT COUNT(l) FROM Like AS l WHERE l.report = :" + JPQL_PARM_REPORT;
+    //該当日報にログイン中の従業員がいいねした件数を取得し返却
+    String Q_REP_COUNT_LIKED = ENTITY_LIKE + ".countLiked";
+    String Q_REP_COUNT_LIKED_DEF = "SELECT COUNT(l) FROM Like AS l WHERE l.employee = :" + JPQL_PARM_EMPLOYEE + " AND l.report = :"+ JPQL_PARM_REPORT;
 }

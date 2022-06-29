@@ -29,6 +29,9 @@ import lombok.Setter;
             name = JpaConst.Q_REP_GET_ALL_LIKE,
             query = JpaConst.Q_REP_GET_ALL_LIKE_DEF),
     @NamedQuery(
+            name = JpaConst.Q_REP_COUNT_LIKED,
+            query = JpaConst.Q_REP_COUNT_LIKED_DEF),
+    @NamedQuery(
             name = JpaConst.Q_REP_COUNT_ALL_LIKE,
             query = JpaConst.Q_REP_COUNT_ALL_LIKE_DEF)
 })

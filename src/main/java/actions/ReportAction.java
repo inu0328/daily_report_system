@@ -156,8 +156,14 @@ public class ReportAction extends ActionBase {
      */
     public void show() throws ServletException, IOException {
 
-        //idを条件に日報データを取得する
+        //日報idを条件に日報データを取得する
         ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+        //該当日報にいいねした人一覧を取得
+        //LikeView lv = LikeService.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+        //セッションからログイン中の従業員情報を取得
+        EmployeeView loginEmployee = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+        //該当日報にログイン中の従業員がいいねした件数を取得し返却
+        long searchLikes = LikeService.searchLike(rv,loginEmployee);
 
         if (rv == null) {
             //該当の日報データが存在しない場合はエラー画面を表示
@@ -166,6 +172,8 @@ public class ReportAction extends ActionBase {
         } else {
 
             putRequestScope(AttributeConst.REPORT, rv); //取得した日報データ
+            putRequestScope(AttributeConst.LIK_COUNT, searchLikes); //取得した日報データ
+            System.out.print("取得日報データセット完了" + searchLikes);
 
             //詳細画面を表示
             forward(ForwardConst.FW_REP_SHOW);
@@ -298,7 +306,6 @@ public class ReportAction extends ActionBase {
         int page = getPage();
         //idを条件に日報データを取得する
         ReportView selectReport = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
-
         List<LikeView> likes = LikeService.getLikePerPage(selectReport, page);
 
         //指定日報のいいねデータの件数を取得
