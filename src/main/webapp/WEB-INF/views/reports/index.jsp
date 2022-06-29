@@ -33,12 +33,12 @@
                         <td class="report_name"><c:out value="${report.employee.name}" /></td>
                         <td class="report_date"><fmt:formatDate value='${reportDay}' pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>
-                    <c:if test="${report.likes == 0}">
-                            <td class="report_likes">${report.likes}</td>
-                    </c:if>
-                    <c:if test="${report.likes != 0}">
-                            <td class="report_likes"><a href="<c:url value='?action=${actRep}&command=${commLike}&id=${report.id}' />">${report.likes}</a></td>
-                    </c:if>
+                        <c:if test="${report.likes == 0}">
+                                <td class="report_likes">${report.likes}</td>
+                        </c:if>
+                        <c:if test="${report.likes != 0}">
+                                <td class="report_likes"><a href="<c:url value='?action=${actRep}&command=${commLike}&id=${report.id}' />">${report.likes}</a></td>
+                        </c:if>
 
 
                         <td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">詳細を見る</a></td>
